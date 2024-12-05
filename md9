@@ -1,0 +1,97 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace md9
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            string txt;
+            Console.Write("Ievadiet simbolu rindu: ");
+            txt = Console.ReadLine();
+
+            int totalSum = 0;
+            var asciiValues = new Dictionary<char, int>();
+            var charCounts = new Dictionary<char, int>();
+
+            foreach (char c in txt)
+            {
+                byte[] asciiBytes = Encoding.UTF8.GetBytes(c.ToString());
+                Console.WriteLine($"{c} = {asciiBytes[0]}");
+                totalSum += asciiBytes[0];
+                asciiValues[c] = asciiBytes[0];
+
+                if (charCounts.ContainsKey(c))
+                {
+                    charCounts[c]++;
+                }
+                else
+                {
+                    charCounts[c] = 1;
+                }
+            }
+
+            Console.WriteLine($"Kodu summa = {totalSum}");
+
+            Console.Write("Ievadiet simbolu, lai atrastu cik reizes atkartojas: ");
+            char searchChar = Console.ReadLine()[0];
+
+            if (charCounts.TryGetValue(searchChar, out int count))
+            {
+                Console.WriteLine($"{searchChar} atkārtojas {count} reizes.");
+            }
+            else
+            {
+                Console.WriteLine($"Simbols '{searchChar}' netika atrasts.");
+            }
+            Otrs();
+        }
+        static void Otrs()
+        {
+            string a;
+            string b;
+            Console.Write("Ievadiet pirmo simbolu rindu: ");
+            a = Console.ReadLine();
+            Console.Write("Ievadiet otro simbolu rindu: ");
+            b = Console.ReadLine();
+
+            char[] charArray = a.ToCharArray();
+            for (int i = 0; i < charArray.Length; i++)
+            {
+                charArray[i] = '*';
+            }
+            string aizviet = new string(charArray);
+            Console.WriteLine("Pirma simbolu rinda " + aizviet);
+
+            char[] upper = b.ToCharArray();
+            for (int i = 0; i < upper.Length; i++)
+            {
+                if (upper[i] >= 'a' && upper[i] <= 'z')
+                {
+                    upper[i] = (char)(upper[i] - 'a' + 'A');
+                }
+            }
+            string uppercase = new string(upper);
+            Console.WriteLine("Otra simbolu rinda " + uppercase);
+
+            int garumsa = aizviet.Length;
+            int garumsb = uppercase.Length;
+            Console.WriteLine($"Pirmās rindas garums: {garumsa}");
+            Console.WriteLine($"Otrās rindas garums: {garumsb}");
+
+            int vidus = uppercase.Length / 2;
+            string combined = uppercase.Substring(0, vidus) + aizviet + uppercase.Substring(vidus);
+            Console.WriteLine("Apvienotā simbolu rinda: " + combined);
+
+            Console.Write("Ievadiet trešo simbolu rindu: ");
+            string tresais = Console.ReadLine();
+
+            int atkartojas = (combined.Length - combined.Replace(tresais, "").Length) / tresais.Length;
+            Console.WriteLine($"Trešā simbolu rinda atkārtojas {atkartojas} reizes apvienotā simbolu rindā.");
+        }
+    }
+}
