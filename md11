@@ -1,0 +1,177 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace md11
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Pirmais uzd");
+            string[] mass = new string[10];
+
+            for (int i = 0; i < mass.Length; i++)
+            {
+                Console.Write($"Ievadiet {i + 1} masīva elementa vērtību: ");
+                string input = Console.ReadLine();
+                if (!string.IsNullOrEmpty(input))
+                {
+                    mass[i] = input;
+                }
+                else
+                {
+                    mass[i] = " ";
+                }
+            }
+
+            for (int i = 0; i < mass.Length; i++)
+            {
+                Console.WriteLine($"masiva {i + 1} vertiba ir: = {mass[i]}");
+            }
+
+            string apvienotaisMasivs = string.Join("", mass);
+            Console.WriteLine($"Apvienotais masīvs: {apvienotaisMasivs}");
+            Otrs();
+        }
+        static void Otrs()
+        {
+            Console.WriteLine("Otrais uzd");
+            Console.Write("Ievadiet pirma masiva izmeru: ");
+            int mass1Size = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Ievadiet otra masiva izmeru: ");
+            int mass2Size = Convert.ToInt32(Console.ReadLine());
+
+            string[] mass1 = new string[mass1Size];
+            string[] mass2 = new string[mass2Size];
+
+            for (int a = 0; a < mass1.Length; a++)
+            {
+                Console.Write($"Ievadiet 1. {a + 1} masīva elementa vērtību: ");
+                mass1[a] = Console.ReadLine();
+            }
+
+            for (int b = 0; b < mass2.Length; b++)
+            {
+                Console.Write($"Ievadiet 2. {b + 1} masīva elementa vērtību: ");
+                mass2[b] = Console.ReadLine();
+            }
+
+            for (int a = 0; a < mass1.Length; a++)
+            {
+                Console.WriteLine($"1. masīva {a + 1}. vērtība ir: {mass1[a]}");
+            }
+
+            for (int b = 0; b < mass2.Length; b++)
+            {
+                Console.WriteLine($"2. masīva {b + 1}. vērtība ir: {mass2[b]}");
+            }
+
+            string apvienotaisMasivs = string.Join("", mass1) + string.Join("", mass2);
+            Console.WriteLine($"1. un 2. masiva apvienota simbolu virkne: {apvienotaisMasivs}");
+            Tresais();
+        }
+        static void Tresais()
+        {
+            Console.WriteLine("Tresais uzd");
+            Console.Write("Ievadiet pirma masiva izmeru: ");
+            int mass3Size = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Ievadiet otra masiva izmeru: ");
+            int mass4Size = Convert.ToInt32(Console.ReadLine());
+
+            string[] mass3 = new string[mass3Size];
+            string[] mass4 = new string[mass4Size];
+
+            for (int c = 0; c < mass3.Length; c++)
+            {
+                Console.Write($"Ievadiet 1. {c + 1} masīva elementa vērtību: ");
+                mass3[c] = Console.ReadLine();
+            }
+
+            for (int d = 0; d < mass4.Length; d++)
+            {
+                Console.Write($"Ievadiet 2. {d + 1} masīva elementa vērtību: ");
+                mass4[d] = Console.ReadLine();
+            }
+
+            for (int c = 0; c < mass3.Length; c++)
+            {
+                Console.WriteLine($"1. masīva {c + 1}. vērtība ir: {mass3[c]}");
+            }
+
+            for (int d = 0; d < mass4.Length; d++)
+            {
+                Console.WriteLine($"2. masīva {d + 1}. vērtība ir: {mass4[d]}");
+            }
+
+            int middleIndex = mass3.Length / 2;
+            string[] komb = new string[mass3.Length + mass4.Length];
+
+            Array.Copy(mass3, 0, komb, 0, middleIndex);
+            Array.Copy(mass4, 0, komb, middleIndex, mass4.Length);
+            Array.Copy(mass3, middleIndex, komb, middleIndex + mass4.Length, mass3.Length - middleIndex);
+
+            string apvienotaisMasivs = string.Join("", komb);
+            Console.WriteLine($"1. un 2. masīva apvienota simbolu virkne: {apvienotaisMasivs}");
+
+            Ceturtais();
+        }
+        static void Ceturtais()
+        {
+            Console.WriteLine("4. Uzdevums");
+            Console.Write("Ievadiet pirma masiva izmeru: ");
+            int mass1Size = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Ievadiet otra masiva izmeru: ");
+            int mass2Size = Convert.ToInt32(Console.ReadLine());
+
+            int[] mass1 = new int[mass1Size];
+            int[] mass2 = new int[mass2Size];
+            Random rand = new Random();
+
+            for (int i = 0; i < mass1.Length; i++)
+            {
+                mass1[i] = rand.Next(10, 101);
+            }
+            for (int i = 0; i < mass2.Length; i++)
+            {
+                mass2[i] = rand.Next(10, 101);
+            }
+
+            Console.WriteLine("pirmais\totrais");
+            for (int i = 0; i < Math.Max(mass1.Length, mass2.Length); i++)
+            {
+                string mass1Value = i < mass1.Length ? mass1[i].ToString() : "";
+                string mass2Value = i < mass2.Length ? mass2[i].ToString() : "";
+                Console.WriteLine($"{mass1Value}\t{mass2Value}");
+            }
+
+            int min1 = int.MaxValue, min2 = int.MaxValue;
+            int max1 = int.MinValue, max2 = int.MinValue;
+
+            foreach (int num in mass1)
+            {
+                if (num < min1) min1 = num;
+                if (num > max1) max1 = num;
+            }
+            foreach (int num in mass2)
+            {
+                if (num < min2) min2 = num;
+                if (num > max2) max2 = num;
+            }
+
+            Console.WriteLine($"Mazakais skaitlis ir {(min1 == min2 ? "gan pirma, gan otra masiva" : min1 < min2 ? "no pirma masiva" : "no otra masiva")} un ir vienads ar {Math.Min(min1, min2)}");
+            Console.WriteLine($"Lielakais skaitlis ir {(max1 == max2 ? "gan pirma, gan otra masiva" : max1 > max2 ? "no pirma masiva" : "no otra masiva")} un ir vienads ar {Math.Max(max1, max2)}");
+
+            for (int i = 0; i < Math.Min(mass1.Length, mass2.Length); i++)
+            {
+                if (mass1[i] == mass2[i])
+                {
+                    Console.WriteLine($"Vienadas vertibas pozicija {i + 1}: {mass1[i]}");
+                }
+            }
+        }
+    }
+}
+        
