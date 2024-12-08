@@ -1,0 +1,123 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace md10
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Pirmais uzd");
+            int[] mass = new int[10];
+
+            for (int i = 0; i < mass.Length; i++)
+            {
+                Console.Write($"Ievadiet {i + 1} masīva elementa vērtību: ");
+                mass[i] = Convert.ToInt32(Console.ReadLine());
+            }
+            for (int i = 0; i < mass.Length; i++)
+            {
+                Console.WriteLine($"mas[{i + 1}] = {mass[i]}");
+            }
+            int[] reiz = new int[10];
+            reiz[0] = mass[0] * 1;
+            Console.WriteLine($"reiz_1 = {reiz[0]}");
+
+            for (int i = 1; i < mass.Length; i++)
+            {
+                reiz[i] = reiz[i - 1] * mass[i];
+                Console.WriteLine($"reiz_{i + 1} = {reiz[i]}");
+            }
+            Console.WriteLine($"Visa masīva kopējais reizinājums  ir {reiz[9]}");
+            Console.Read();
+            Otrs();
+        }
+        static void Otrs()
+        {
+            Console.WriteLine("Otrais uzd");
+            char[] mass2 = new char[20] { '@', '6', 'A', 'C', '9', '5', 'B', 'B', '9', '2', '6', 'A', 'C', '9', '5', 'B', 'B', '9', '2', '6' };
+            char simbol;
+            int count = 0;
+
+            for (int i = 0; i < mass2.Length; i++)
+            {
+                Console.WriteLine($"mas[{i + 1}] = {mass2[i]}");
+            }
+
+            Console.Write("Ievadiet simbolu: ");
+            simbol = Console.ReadKey().KeyChar;
+            Console.WriteLine();
+
+            foreach (char c in mass2)
+            {
+                if (c == simbol)
+                {
+                    count++;
+                }
+            }
+
+            Console.WriteLine($"Simbols {simbol}atrodas masiva {count} reizes");
+
+            Console.WriteLine(simbol);
+            for (int i = 0; i < mass2.Length; i++)
+            {
+                if (mass2[i] != simbol)
+                {
+                    Console.WriteLine($"mas[{i + 1}] = {mass2[i]}");
+                }
+            }
+
+            Tresais();
+        }
+        static void Tresais()
+        {
+            Console.WriteLine("Tresais uzd");
+            int[] mass3 = new int[10] { 12, 12, 4, 17, 1, 6, 10, 12, 5, 10 };
+            int max = mass3[0];
+            int min = mass3[0];
+
+            for (int i = 0; i < mass3.Length; i++)
+            {
+                Console.WriteLine($"mas[{i + 1}] = {mass3[i]}");
+            }
+
+            foreach (int num in mass3)
+            {
+                if (num > max)
+                {
+                    max = num;
+                }
+                if (num < min)
+                {
+                    min = num;
+                }
+            }
+
+            Console.WriteLine($"Max value = {max}");
+            Console.WriteLine($"Min value = {min}");
+            Ceturtais();
+        }
+        static void Ceturtais()
+        {
+            Console.WriteLine("Ceturtais uzd");
+            int[] mass = new int[10] { 10, 6, 18, 13, 6, 14, 6, 19, 12, 7 };
+
+            for (int i = 0; i < mass.Length; i++)
+            {
+                Console.WriteLine($"mas[{i + 1}] = {mass[i]}");
+            }
+
+            Array.Reverse(mass);
+
+            for (int i = 0; i < mass.Length; i++)
+            {
+                Console.WriteLine($"mas[{i + 1}] = {mass[i]}");
+            }
+
+        }
+    }
+}
+
