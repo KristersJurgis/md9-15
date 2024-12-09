@@ -1,0 +1,178 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace md12
+{
+    internal static class Program
+    {
+
+        static void Main()
+        {
+            Console.WriteLine("Pirmais uzd");
+
+            int[,] mas = new int[10, 10];
+            Random num = new Random();
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    mas[i, j] = num.Next(1, 10);
+                }
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    Console.Write(mas[i, j] + "\t");
+                }
+                Console.WriteLine();
+                Console.WriteLine();
+
+            }
+            int kopsum = 0;
+            for (int i = 0; i < 10; i++)
+
+            {
+                int rindsum = 0;
+                for (int j = 0; j < 10; j++)
+                {
+                    rindsum += mas[i, j];
+                }
+                Console.WriteLine($"{i + 1} rindas summa ir {rindsum}");
+                kopsum += rindsum;
+            }
+            Console.WriteLine($"Masīva kopēja summa ir {kopsum}");
+            Console.WriteLine();
+            Otrais();
+        }
+        static void Otrais()
+        {
+            Console.WriteLine("Otrais uzdevums");
+            int[,] mas = new int[10, 10];
+            Random num = new Random();
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    mas[i, j] = num.Next(1, 10);
+                }
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    Console.Write(mas[i, j] + "\t");
+                }
+                Console.WriteLine();
+                Console.WriteLine();
+
+            }
+            int kopmax = int.MinValue;
+            int minmax = int.MaxValue;
+
+            for (int i = 0; i < 10; i++)
+            {
+                int rindasMax = int.MinValue;
+                int rindasMin = int.MaxValue;
+                for (int j = 0; j < 10; j++)
+                {
+                    if (mas[i, j] > rindasMax) rindasMax = mas[i, j];
+                    if (mas[i, j] < rindasMin) rindasMin = mas[i, j];
+                }
+                Console.WriteLine($"{i + 1} rindas max vertiba: {rindasMax}| {i + 1} rindas min vertiba: {rindasMin}");
+                if (rindasMax > kopmax) kopmax = rindasMax;
+                if (rindasMin > minmax) minmax = rindasMin;
+            }
+            Console.WriteLine($"Visa masīva max vērtiba: {kopmax}| Visa masīva min vērtiba: {minmax}");
+            Tresais(); 
+        }
+        static void Tresais()
+        {
+            Console.WriteLine("Tresais uzdevums");
+            int[,] mas = new int[10, 10];
+            Random num = new Random();
+
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    mas[i, j] = num.Next(1, 11);
+                }
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    Console.Write(mas[i, j] + "\t");
+                }
+                Console.WriteLine();
+                Console.WriteLine();
+            }
+
+            int[,] apgr = new int[10, 10];
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    apgr[j, i] = mas[i, j];
+                }
+                Console.WriteLine();
+                Console.WriteLine();
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    Console.Write(apgr[i, j] + "\t");
+                }
+                Console.WriteLine();
+                Console.WriteLine();
+            }
+            Ceturtais();
+        }
+        static void Ceturtais()
+        {
+            int[,] mas = new int[10, 10];
+            Random num = new Random();
+
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    mas[i, j] = num.Next(1, 11);
+                }
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    if (j > i)
+                    {
+                        mas[i, j] = 0;
+                    }
+                }
+                Console.WriteLine();
+                Console.WriteLine();
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    Console.Write(mas[i, j] + "\t");
+                }
+                Console.WriteLine();
+                Console.WriteLine();
+            }
+
+        }
+    }
+}
