@@ -1,0 +1,121 @@
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Runtime.Serialization.Formatters;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+
+namespace md13
+{
+    internal static class Program
+    {
+
+        static void Main()
+        {
+            Console.WriteLine("Pirmais uzdevums");
+            Console.Write("Ievadiet rindu skaitu: ");
+            int rind = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Ievadiet kollonu skaitu: ");
+            int koll = Convert.ToInt32(Console.ReadLine());
+
+            Random num = new Random();
+            int[,] mas = new int[rind, koll];
+            int evenCount = 0;
+            int totalCount = rind * koll;
+
+            for (int i = 0; i < rind; i++)
+            {
+                for (int j = 0; j < koll; j++)
+                {
+                    mas[i, j] = num.Next(0, 100);
+                    if (mas[i, j] % 2 == 0)
+                    {
+                        evenCount++;
+                    }
+                }
+            }
+
+            for (int i = 0; i < rind; i++)
+            {
+                for (int j = 0; j < koll; j++)
+                {
+                    Console.Write(mas[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+
+            double evenPercentage = (double)evenCount / totalCount * 100;
+            Console.WriteLine($"Pāra skaitļu procents: {evenPercentage}%");
+            Console.WriteLine();
+
+
+
+            for (int i = 0; i < rind; i++)
+            {
+                for (int j = 0; j < koll; j++)
+                {
+                    if (mas[i, j] % 2 == 0)
+                    {
+                        mas[i, j] += 1;
+                    }
+                    Console.Write(mas[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+            Otrais();
+        }
+        static void Otrais()
+        {
+            Console.WriteLine("Otrais uzdevums");
+
+            Console.Write("Ievadiet rindu skaitu: ");
+            int rind = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Ievadiet kollonu skaitu: ");
+            int koll = Convert.ToInt32(Console.ReadLine());
+
+            Random num = new Random();
+            int[,] mas = new int[rind, koll];
+            int evenCount = 0;
+            int totalCount = rind * koll;
+
+            for (int i = 0; i < rind; i++)
+            {
+                for (int j = 0; j < koll; j++)
+                {
+                    mas[i, j] = num.Next(0, 100);
+                    if (mas[i, j] % 2 == 0)
+                    {
+                        evenCount++;
+                    }
+                }
+            }
+
+            
+            for (int i = 0; i < rind; i++)
+            {
+                for (int j = 0; j < koll; j++)
+                {
+                    Console.Write(mas[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+
+            Console.WriteLine("Katrs otrais elements = 0");
+            Console.WriteLine();
+            for (int i = 0; i < rind; i++)
+            {
+                for (int j = 0; j < koll; j++)
+                {
+                    if ((i + j) % 2 == 0)
+                    {
+                        mas[i, j] = 0;
+                    }
+                    Console.Write(mas[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+        }
+    }
+}
