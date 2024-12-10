@@ -62,7 +62,10 @@ namespace md9
             char[] charArray = a.ToCharArray();
             for (int i = 0; i < charArray.Length; i++)
             {
-                charArray[i] = '*';
+                if (char.IsDigit(charArray[i]))
+                {
+                    charArray[i] = '*';
+                }
             }
             string aizviet = new string(charArray);
             Console.WriteLine("Pirma simbolu rinda " + aizviet);
