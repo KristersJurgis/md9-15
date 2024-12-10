@@ -58,15 +58,20 @@ namespace md11
                 Console.Write($"Ievadiet 2. {b + 1} masīva elementa vērtību: ");
                 mass2[b] = Console.ReadLine();
             }
+            int c = 0, d = 0;
 
-            for (int a = 0; a < mass1.Length; a++)
+            while (c < mass1.Length || d < mass2.Length)
             {
-                Console.WriteLine($"1. masīva {a + 1}. vērtība ir: {mass1[a]}");
-            }
-
-            for (int b = 0; b < mass2.Length; b++)
-            {
-                Console.WriteLine($"2. masīva {b + 1}. vērtība ir: {mass2[b]}");
+                if (c < mass1.Length)
+                {
+                    Console.WriteLine($"1. masīva {c + 1}. vērtība ir: {mass1[c]}");
+                    c++;
+                }
+                if (d < mass2.Length)
+                {
+                    Console.WriteLine($"2. masīva {d + 1}. vērtība ir: {mass2[d]}");
+                    d++;
+                }
             }
 
             string apvienotaisMasivs = string.Join("", mass1) + string.Join("", mass2);
@@ -174,4 +179,3 @@ namespace md11
         }
     }
 }
-        
